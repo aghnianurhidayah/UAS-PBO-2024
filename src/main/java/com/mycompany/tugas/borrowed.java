@@ -30,9 +30,12 @@ public class borrowed extends javax.swing.JFrame {
     /**
      * Creates new form dashboardAdmin
      */
-    public borrowed() {
+    public String idUser, username;
+    public borrowed(String getIdUser, String getUsername) {
         initComponents();
         DB();
+        idUser = getIdUser;
+        username = getUsername;
         loadTable();
     }
     
@@ -51,34 +54,33 @@ public class borrowed extends javax.swing.JFrame {
     private void loadTable() {
         int column;
         
-//        try {
-//            pst = con.prepareStatement("SELECT * FROM borrowed WHERE id_user=?");
-//            pst.setString(1, );
-//            ResultSet rs = pst.executeQuery();
-//            
-//            ResultSetMetaData RSMD = rs.getMetaData();
-//            column = RSMD.getColumnCount();
-//            DefaultTableModel DFT = (DefaultTableModel) jTable1.getModel();
-//            DFT.setRowCount(0);
-//            
-//            while (rs.next()) {
-//                Vector v2 = new Vector();
-//                
-//                for (int i = 1; i <= column; i++){
-//                    v2.add(rs.getString("id"));
-//                    v2.add(rs.getString("judul"));
-//                    v2.add(rs.getString("jenis"));
-//                    v2.add(rs.getString("genre"));
-//                    v2.add(rs.getString("pengarang"));
-//                    v2.add(rs.getString("penerbit"));
-//                    v2.add(rs.getString("thn_terbit"));
-//                    v2.add(rs.getString("jml_hal"));
-//                    v2.add(rs.getString("jml_copy"));
-//                    v2.add(rs.getBlob("img_cover"));
-//                }
-//                DFT.addRow(v2);
-//            }
-//        } catch (SQLException ex){}
+        try {
+
+            pst = con.prepareStatement("SELECT book.judul AS judul, book.jenis AS jenis, book.genre AS genre, book.pengarang AS pengarang FROM book JOIN borrowed ON book.id = borrowed.id_book WHERE id_user=?");
+            pst.setString(1, idUser);
+            ResultSet rs = pst.executeQuery();
+            
+            ResultSetMetaData RSMD = rs.getMetaData();
+            column = RSMD.getColumnCount();
+            DefaultTableModel DFT = (DefaultTableModel) jTable1.getModel();
+            DFT.setRowCount(0);
+            
+            while (rs.next()) {
+                Vector v2 = new Vector();
+                
+                for (int i = 1; i <= column; i++){
+                    v2.add(rs.getString("judul"));
+                    v2.add(rs.getString("jenis"));
+                    v2.add(rs.getString("genre"));
+                    v2.add(rs.getString("pengarang"));
+                }
+                DFT.addRow(v2);
+            }
+            
+            rs.close();
+            pst.close();
+            
+        } catch (SQLException ex){}
     }
 
     /**
@@ -102,13 +104,13 @@ public class borrowed extends javax.swing.JFrame {
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Judul", "Jenis", "Genre", "Pengarang", "Penerbit", "Tahun Terbit", "Jml Halaman", "Jml Copy", "Image"
+                "Judul", "Jenis", "Genre", "Pengarang"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,7 +160,7 @@ public class borrowed extends javax.swing.JFrame {
                 .addComponent(books)
                 .addGap(36, 36, 36)
                 .addComponent(users1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addGap(65, 65, 65))
         );
@@ -177,9 +179,9 @@ public class borrowed extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -188,55 +190,21 @@ public class borrowed extends javax.swing.JFrame {
 
     private void booksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksMouseClicked
         // TODO add your handling code here:
-        this.setVisible(true);
+        this.setVisible(false);
+        home home = new home(idUser,username);
+        home.setVisible(true);
     }//GEN-LAST:event_booksMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
-        this.dispose();
+        this.setVisible(false);
         login login = new login();
         login.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//        int selectedIndex = jTable1.getSelectedRow();
-//
-//        detailbookuser dbu = new detailbookuser();
-//        dbu.setVisible(true);
-//        dbu.pack();
-//        dbu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//
-//        dbu.txtJudul.setText(model.getValueAt(selectedIndex, 1).toString());
-//        int id = Integer.parseInt(model.getValueAt(selectedIndex, 0).toString());
-//        dbu.txtJenis.setText(model.getValueAt(selectedIndex, 2).toString());
-//        dbu.txtGenre.setText(model.getValueAt(selectedIndex, 3).toString());
-//        dbu.txtPengarang.setText(model.getValueAt(selectedIndex, 4).toString());
-//        dbu.txtPenerbit.setText(model.getValueAt(selectedIndex, 5).toString());
-//        dbu.txtTahunTerbit.setText(model.getValueAt(selectedIndex, 6).toString());
-//        dbu.txtJmlHal.setText(model.getValueAt(selectedIndex, 7).toString());
-//        dbu.txtJmlCopy.setText(model.getValueAt(selectedIndex, 8).toString());
-//
-//        Object imgObj = model.getValueAt(selectedIndex, 9);
-//        if (imgObj instanceof Blob) {
-//            try {
-//                Blob img_cover = (Blob) imgObj;
-//                String path = "D:\\smt4\\pbo\\uas\\src\\main\\resources\\image_cover\\cover_image.jpg";
-//                byte [] bytes = img_cover.getBytes(1, (int)img_cover.length());
-//                FileOutputStream fos = new FileOutputStream(path);
-//                fos.write(bytes);
-//                Image image = new ImageIcon(bytes).getImage();
-//                Image scaledImage = image.getScaledInstance(110, 137, Image.SCALE_SMOOTH);
-//                ImageIcon icon = new ImageIcon(scaledImage);
-//                dbu.imgCover.setIcon(icon);
-//            } catch (IOException ex) {
-//                Logger.getLogger(books.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(books.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -272,7 +240,7 @@ public class borrowed extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new borrowed().setVisible(true);
+                new borrowed("", "").setVisible(true);
             }
         });
     }

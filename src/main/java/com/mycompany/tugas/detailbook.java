@@ -212,10 +212,10 @@ public class detailbook extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addComponent(deleteButton)
                                 .addGap(32, 32, 32))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel10)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(71, 71, 71))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,11 +326,10 @@ public class detailbook extends javax.swing.JFrame {
             pst.setString(8, jmlcopy);
             pst.setBlob(9, is);
             pst.setString(10, idBook);
-
             pst.executeUpdate();
+            
             JOptionPane.showMessageDialog(this, "Data Buku Berhasil diubah!");
             this.setVisible(false);
-            loadTable();
             
         }catch (SQLException ex){} catch (FileNotFoundException ex) {
             Logger.getLogger(detailbook.class.getName()).log(Level.SEVERE, null, ex);
@@ -352,9 +351,7 @@ public class detailbook extends javax.swing.JFrame {
             Image img = bi.getScaledInstance(110, 137, Image.SCALE_SMOOTH);
             ImageIcon ii = new ImageIcon(img);
             imgCover.setIcon(ii);
-        } catch (IOException ex) {
-            Logger.getLogger(detailbook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (IOException ex) {}
     }//GEN-LAST:event_uploadImgButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -367,7 +364,6 @@ public class detailbook extends javax.swing.JFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Buku Berhasil dihapus!");
             this.setVisible(false);
-            loadTable();
             
         } catch (SQLException ex){}
     }//GEN-LAST:event_deleteButtonActionPerformed
@@ -441,7 +437,4 @@ public class detailbook extends javax.swing.JFrame {
     private javax.swing.JButton uploadImgButton;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

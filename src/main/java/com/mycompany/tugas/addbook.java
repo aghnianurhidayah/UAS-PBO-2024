@@ -294,7 +294,6 @@ public class addbook extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(this, "Data Buku Berhasil ditambah!");
                 this.setVisible(false);
-                loadTable();
 
                 txtJudul.setText("");
                 rbFiksi.setSelected(false);

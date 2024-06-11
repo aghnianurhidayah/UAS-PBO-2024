@@ -30,12 +30,14 @@ public class home extends javax.swing.JFrame {
     /**
      * Creates new form dashboardAdmin
      */
-    String idUser;
-    public home(String getIdUser) {
+    public String idUser, username;
+    public home(String getIdUser, String getUsername) {
         initComponents();
         DB();
         loadTable();
         idUser = getIdUser;
+        username = getUsername;
+        lbl_username.setText(getUsername);
     }
     
     Connection con;
@@ -54,7 +56,7 @@ public class home extends javax.swing.JFrame {
         int column;
         
         try {
-            pst = con.prepareStatement("SELECT * FROM book");
+            pst = con.prepareStatement("SELECT * FROM book WHERE jml_copy > 0");
             ResultSet rs = pst.executeQuery();
             
             ResultSetMetaData RSMD = rs.getMetaData();
@@ -91,14 +93,19 @@ public class home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         books = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
-        users1 = new javax.swing.JLabel();
+        borrowed = new javax.swing.JLabel();
+        lbl_username = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Welcome, ");
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -137,11 +144,11 @@ public class home extends javax.swing.JFrame {
             }
         });
 
-        users1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        users1.setText("Borrowed");
-        users1.addMouseListener(new java.awt.event.MouseAdapter() {
+        borrowed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        borrowed.setText("Borrowed");
+        borrowed.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                users1MouseClicked(evt);
+                borrowedMouseClicked(evt);
             }
         });
 
@@ -152,7 +159,7 @@ public class home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(users1)
+                    .addComponent(borrowed)
                     .addComponent(logout)
                     .addComponent(books))
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -163,11 +170,14 @@ public class home extends javax.swing.JFrame {
                 .addGap(151, 151, 151)
                 .addComponent(books)
                 .addGap(36, 36, 36)
-                .addComponent(users1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(borrowed)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addGap(65, 65, 65))
         );
+
+        lbl_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_username.setText("username");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,17 +185,26 @@ public class home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_username)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(95, 95, 95)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lbl_username))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,6 +218,8 @@ public class home extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
+        idUser = "";
+        username = "";
         this.dispose();
         login login = new login();
         login.setVisible(true);
@@ -246,12 +267,12 @@ public class home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
+    private void borrowedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrowedMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        borrowed borrowed = new borrowed();
+        borrowed borrowed = new borrowed(idUser, username);
         borrowed.setVisible(true);
-    }//GEN-LAST:event_users1MouseClicked
+    }//GEN-LAST:event_borrowedMouseClicked
 
     /**
      * @param args the command line arguments
@@ -284,17 +305,19 @@ public class home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new home("").setVisible(true);
+                new home("", "").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel books;
+    private javax.swing.JLabel borrowed;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl_username;
     private javax.swing.JLabel logout;
-    private javax.swing.JLabel users1;
     // End of variables declaration//GEN-END:variables
 }
