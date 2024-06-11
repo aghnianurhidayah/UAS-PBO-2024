@@ -255,18 +255,35 @@ public class detailbookuser extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             
-            jmlCopy = jmlCopy-1;
+            pst = con.prepareStatement("SELECT * FROM borrowed");
+            ResultSet rs = pst.executeQuery();
+            boolean isFound = false;
             
-            pst = con.prepareStatement("INSERT INTO borrowed (id_user, id_book) VALUES (?,?)");
-            pst.setString(1, idUser);
-            pst.setString(2, idBook);
-            pst2 = con.prepareStatement("UPDATE book SET jml_copy=? WHERE id=?");
-            pst2.setInt(1, jmlCopy);
-            pst2.setString(2, idBook);
-            pst.executeUpdate();
-            pst2.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Buku Berhasil dipinjam!");
-            this.setVisible(false);
+            while (rs.next()){
+                if(idUser.equals(rs.getString("id_user")) && idBook.equals(rs.getString("id_book"))){
+                    JOptionPane.showMessageDialog(this, "Buku sudah dipinjam!");
+                    this.setVisible(false);
+                    isFound = true;
+                } else {
+                    isFound = false;
+                }
+            }
+            
+            if (!isFound){
+                jmlCopy = jmlCopy-1;
+           
+                pst = con.prepareStatement("INSERT INTO borrowed (id_user, id_book) VALUES (?,?)");
+                pst.setString(1, idUser);
+                pst.setString(2, idBook);
+                pst2 = con.prepareStatement("UPDATE book SET jml_copy=? WHERE id=?");
+                pst2.setInt(1, jmlCopy);
+                pst2.setString(2, idBook);
+                pst.executeUpdate();
+                pst2.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Buku Berhasil dipinjam!");
+                this.setVisible(false);
+            }
+    
         } catch (SQLException ex) {
             Logger.getLogger(detailbookuser.class.getName()).log(Level.SEVERE, null, ex);
         }
