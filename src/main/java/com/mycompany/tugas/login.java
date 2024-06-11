@@ -184,10 +184,10 @@ public class login extends javax.swing.JFrame {
                 password = txtPassword.getText();
                 
                 if("admin".equals(username) && "admin123".equals(password)){
+                    JOptionPane.showMessageDialog(this, "Login Successfully!");
                     this.dispose();
                     dashboardAdmin da = new dashboardAdmin();
                     da.setVisible(true);
-                    JOptionPane.showMessageDialog(this, "Login Successfully!");
                 }else{
                     pst = con.prepareStatement("SELECT * FROM user WHERE username=?");
                     pst.setString(1, username);
@@ -200,10 +200,10 @@ public class login extends javax.swing.JFrame {
                     }
                     
                     if(isFound && password.equals(getPassword)){
+                        JOptionPane.showMessageDialog(this, "Login Successfully!");
                         this.dispose();
                         home home = new home(getId, getUsername);
                         home.setVisible(true);
-                        JOptionPane.showMessageDialog(this, "Login Successfully!");
                     }else{
                         JOptionPane.showMessageDialog(this, "Incorrect username and password!");
                     }

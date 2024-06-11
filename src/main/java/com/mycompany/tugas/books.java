@@ -96,7 +96,7 @@ public class books extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         dashboard = new javax.swing.JLabel();
         books = new javax.swing.JLabel();
-        users = new javax.swing.JLabel();
+        borrowedUser = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         addBookButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -135,8 +135,13 @@ public class books extends javax.swing.JFrame {
         books.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         books.setText("Books");
 
-        users.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        users.setText("Users");
+        borrowedUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        borrowedUser.setText("Borrowed");
+        borrowedUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                borrowedUserMouseClicked(evt);
+            }
+        });
 
         logout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logout.setText("Logout");
@@ -154,7 +159,7 @@ public class books extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout)
-                    .addComponent(users)
+                    .addComponent(borrowedUser)
                     .addComponent(dashboard)
                     .addComponent(books))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -167,7 +172,7 @@ public class books extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(books)
                 .addGap(35, 35, 35)
-                .addComponent(users)
+                .addComponent(borrowedUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addGap(65, 65, 65))
@@ -300,6 +305,13 @@ public class books extends javax.swing.JFrame {
         db.setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
 
+    private void borrowedUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrowedUserMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        borrowedAdmin ba = new borrowedAdmin();
+        ba.setVisible(true);
+    }//GEN-LAST:event_borrowedUserMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -339,12 +351,12 @@ public class books extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBookButton;
     private javax.swing.JLabel books;
+    private javax.swing.JLabel borrowedUser;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logout;
-    private javax.swing.JLabel users;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,7 +41,7 @@ public class detailbook extends javax.swing.JFrame {
     
     Connection con;
     PreparedStatement pst;
-    String path, path2;
+    String path;
     
     public void DB(){
         try{
@@ -313,7 +313,7 @@ public class detailbook extends javax.swing.JFrame {
             thnterbit = txtTahunTerbit.getText();
             jmlhal = txtJmlHal.getText();
             jmlcopy = txtJmlCopy.getText();
-            InputStream is = new FileInputStream(new File(path2));
+            InputStream is = new FileInputStream(new File(path));
             
             pst = con.prepareStatement("UPDATE book SET judul=?, jenis=?, genre=?, pengarang=?, penerbit=?, thn_terbit=?, jml_hal=?, jml_copy=?, img_cover=? WHERE id=?");
             pst.setString(1, judul);

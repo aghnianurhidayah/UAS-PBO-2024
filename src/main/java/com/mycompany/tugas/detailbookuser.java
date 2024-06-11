@@ -8,6 +8,7 @@ package com.mycompany.tugas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -253,6 +254,7 @@ public class detailbookuser extends javax.swing.JFrame {
     private void borrowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowButtonActionPerformed
         try {
             // TODO add your handling code here:
+            
             jmlCopy = jmlCopy-1;
             
             pst = con.prepareStatement("INSERT INTO borrowed (id_user, id_book) VALUES (?,?)");
@@ -265,7 +267,6 @@ public class detailbookuser extends javax.swing.JFrame {
             pst2.executeUpdate();
             JOptionPane.showMessageDialog(this, "Buku Berhasil dipinjam!");
             this.setVisible(false);
-            loadTable();
         } catch (SQLException ex) {
             Logger.getLogger(detailbookuser.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -334,7 +335,4 @@ public class detailbookuser extends javax.swing.JFrame {
     public javax.swing.JTextField txtTahunTerbit;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

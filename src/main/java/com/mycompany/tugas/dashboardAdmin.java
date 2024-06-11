@@ -79,7 +79,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         dashboard = new javax.swing.JLabel();
         books = new javax.swing.JLabel();
-        users = new javax.swing.JLabel();
+        borrowedUser = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblBook = new javax.swing.JLabel();
@@ -109,11 +109,11 @@ public class dashboardAdmin extends javax.swing.JFrame {
             }
         });
 
-        users.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        users.setText("Users");
-        users.addMouseListener(new java.awt.event.MouseAdapter() {
+        borrowedUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        borrowedUser.setText("Borrowed");
+        borrowedUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usersMouseClicked(evt);
+                borrowedUserMouseClicked(evt);
             }
         });
 
@@ -133,7 +133,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout)
-                    .addComponent(users)
+                    .addComponent(borrowedUser)
                     .addComponent(dashboard)
                     .addComponent(books))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -146,7 +146,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(books)
                 .addGap(35, 35, 35)
-                .addComponent(users)
+                .addComponent(borrowedUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addGap(65, 65, 65))
@@ -225,18 +225,18 @@ public class dashboardAdmin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(49, 49, 49)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
-                .addGap(0, 188, Short.MAX_VALUE))
+                .addGap(0, 169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(84, 84, 84)
                 .addComponent(jLabel3)
-                .addGap(39, 39, 39)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,7 +254,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
 
     private void booksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksMouseClicked
         // TODO add your handling code here:
-        this.dispose();
+        this.setVisible(false);
         books books = new books();
         books.setVisible(true);
     }//GEN-LAST:event_booksMouseClicked
@@ -266,10 +266,12 @@ public class dashboardAdmin extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
-    private void usersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseClicked
+    private void borrowedUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrowedUserMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_usersMouseClicked
+        this.setVisible(false);
+        borrowedAdmin ba = new borrowedAdmin();
+        ba.setVisible(true);
+    }//GEN-LAST:event_borrowedUserMouseClicked
 
     /**
      * @param args the command line arguments
@@ -308,6 +310,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel books;
+    private javax.swing.JLabel borrowedUser;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -318,6 +321,5 @@ public class dashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblBook;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel logout;
-    private javax.swing.JLabel users;
     // End of variables declaration//GEN-END:variables
 }

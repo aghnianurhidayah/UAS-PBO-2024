@@ -4,8 +4,10 @@ com\mycompany\tugas\dashboardAdmin$2.class
 com\mycompany\tugas\signup$3.class
 com\mycompany\tugas\books$4.class
 com\mycompany\tugas\addbook.class
+com\mycompany\tugas\borrowedAdmin$2.class
 com\mycompany\tugas\bookmanagement$6.class
 com\mycompany\tugas\bookmanagement$2.class
+com\mycompany\tugas\borrowedAdmin$5.class
 com\mycompany\tugas\detailbookuser$2.class
 com\mycompany\tugas\addbook$2.class
 com\mycompany\tugas\home$4.class
@@ -13,6 +15,7 @@ com\mycompany\tugas\detailbook$3.class
 com\mycompany\tugas\signup.class
 com\mycompany\tugas\home$1.class
 com\mycompany\tugas\borrowed$3.class
+com\mycompany\tugas\borrowedAdmin$1.class
 com\mycompany\tugas\books$3.class
 com\mycompany\tugas\dashboardAdmin$1.class
 com\mycompany\tugas\bookmanagement$3.class
@@ -25,6 +28,7 @@ com\mycompany\tugas\detailbook$4.class
 com\mycompany\tugas\home$5.class
 com\mycompany\tugas\borrowed$2.class
 com\mycompany\tugas\dashboardAdmin$4.class
+com\mycompany\tugas\books$6.class
 com\mycompany\tugas\home.class
 com\mycompany\tugas\Tugas.class
 com\mycompany\tugas\bookmanagement.class
@@ -34,9 +38,11 @@ com\mycompany\tugas\books$2.class
 com\mycompany\tugas\detailbook$5.class
 com\mycompany\tugas\login.class
 com\mycompany\tugas\addbook$4.class
+com\mycompany\tugas\borrowedAdmin$4.class
 com\mycompany\tugas\bookmanagement$1.class
 com\mycompany\tugas\bookmanagement$7.class
 com\mycompany\tugas\signup$1.class
+com\mycompany\tugas\borrowedAdmin.class
 com\mycompany\tugas\dashboardAdmin$3.class
 com\mycompany\tugas\detailbook$6.class
 com\mycompany\tugas\bookmanagement$4.class
@@ -54,4 +60,5 @@ com\mycompany\tugas\detailbookuser$3.class
 com\mycompany\tugas\borrowed$4.class
 com\mycompany\tugas\login$2.class
 com\mycompany\tugas\books$1.class
+com\mycompany\tugas\borrowedAdmin$3.class
 com\mycompany\tugas\detailbook$2.class

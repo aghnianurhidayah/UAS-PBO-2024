@@ -38,7 +38,7 @@ public class addbook extends javax.swing.JFrame {
     
     Connection con;
     PreparedStatement pst;
-    String path, path2;
+    String path;
     
     public void DB(){
         try{
@@ -277,7 +277,7 @@ public class addbook extends javax.swing.JFrame {
             thnterbit = txtTahunTerbit.getText();
             jmlhal = txtJmlHal.getText();
             jmlcopy = txtJmlCopy.getText();
-                InputStream is = new FileInputStream(new File(path2));
+                InputStream is = new FileInputStream(new File(path));
                 
 
                 pst = con.prepareStatement("INSERT INTO book (judul, jenis, genre, pengarang, penerbit, thn_terbit, jml_hal, jml_copy, img_cover) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -393,7 +393,4 @@ public class addbook extends javax.swing.JFrame {
     private javax.swing.JButton uploadImgButton;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
